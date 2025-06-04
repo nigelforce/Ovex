@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://asgard.review.ovex.io/signin');
+  await page.getByRole('textbox', { name: 'Email Address' }).fill('test@ovex.io');
+  await page.getByRole('textbox', { name: 'Email Address' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Password' }).fill('Password1-+2');
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByRole('link', { name: 'Buy & Sell' }).click();
+  await page.getByRole('paragraph').filter({ hasText: 'BTC/ZAR' }).click();
+  await page.locator('div').filter({ hasText: /^ADA\/ZAR$/ }).click();
+  await page.locator('input[name="fromAmount"]').click();
+  await page.locator('input[name="fromAmount"]').fill('100');
+  await page.getByRole('button', { name: 'Generate Quote' }).click();
+  await page.getByRole('img', { name: 'two way arrow' }).click();
+  await page.locator('input[name="fromAmount"]').click();
+  await page.locator('input[name="fromAmount"]').fill('500');
+  await page.getByRole('button', { name: 'Generate Quote' }).click();
+  await page.getByRole('img', { name: 'two way arrow' }).click();
+  await page.locator('input[name="fromAmount"]').click();
+  await page.locator('input[name="fromAmount"]').fill('600');
+  await page.getByRole('button', { name: 'Generate Quote' }).click();
+  await page.getByRole('button', { name: 'Confirm Order' }).click();
+  await page.getByRole('button', { name: 'Done!' }).click();
+  await page.getByTitle('Discover Institutional').click();
+  await page.getByRole('link', { name: 'OVEX Logo' }).click();
+  await page.getByRole('link', { name: 'OVEX Logo' }).first().click();
+  await page.getByRole('button', { name: 'avatar-img' }).click();
+  await page.getByRole('link', { name: 'Dashboard' }).click();
+  await page.getByRole('button', { name: 'avatar-img' }).click();
+  await page.getByText('Sign Out').click();
+});
