@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 
 test('Broker_Test', async ({ page }) => {
   test.slow(); // Mark the test as slow
-
 await page.goto('https://asgard.review.ovex.io/');
 await page.getByText('Sign InGet Started').click();
 await page.getByRole('textbox', { name: 'Email Address' }).click();
